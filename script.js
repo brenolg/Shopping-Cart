@@ -64,14 +64,23 @@ const getIdFromProductItem = (product) => product.querySelector('span.id').inner
  * @param {string} product.price - Preço do produto.
  * @returns {Element} Elemento de um item do carrinho.
  */
+let cart = document.querySelector('.cart__items');
 const createCartItemElement = ({ id, title, price }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
-  
+  li.addEventListener('click', cartItemClickListener);
+  saveCartItems(cart);
   return li;
+  
 };
 
+const cartItemClickListener = (e) => {
+const li = e.target;
+li.remove();
+saveCartItems(cart);
+
+}
 
 const createProducts = async () => {
   const productsHtml = document.querySelector('.items');
@@ -92,11 +101,19 @@ window.addEventListener('click', async (e) => {
     const title = await dados.title;
     const price = await dados.price;
     cart.appendChild(createCartItemElement({id, title, price}));
+    saveCartItems(document.querySelector('.cart__items'));
   } 
 })
 
+const loadLocal = () => {
+  let liLocal = getSavedCartItems();
+  document.querySelector('.cart__items').innerHTML = liLocal;
+}
+
 window.onload = () => {
   createProducts();
+  loadLocal();
+   
   
  };
 
