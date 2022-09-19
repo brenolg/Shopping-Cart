@@ -4,6 +4,15 @@ const saveCartItems = require('../helpers/saveCartItems');
 localStorageSimulator('setItem');
 
 describe('3 - Teste a função saveCartItems', () => {
-  // implemente seus testes aqui
-  fail('Teste vazio');
+  test('Teste se, ao executar saveCartItems com um cartItem como argumento, o método localStorage.setItem é chamado;', () => {
+    saveCartItems('cartItem')
+    expect(localStorage.setItem).toBeCalled();
+
+  });
+  test('Teste se, ao executar saveCartItems com um cartItem como argumento, o método localStorage.setItem é chamado com dois parâmetros, sendo o primeiro a chave cartItems e o segundo sendo o valor passado como argumento para saveCartItems', () => {
+    saveCartItems('cartItem')
+    expect(localStorage.setItem).toBeCalledWith('cartItems', 'value');
+
+  });
+  
 });
