@@ -9,10 +9,7 @@
  * @returns {Element} Elemento de imagem do produto.
  */
 
- const getInner = (param) => {
-  return param.innerHTML;
-}
-
+const cart = document.querySelector('.cart__items');
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -59,7 +56,6 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  * @param {Element} product - Elemento do produto.
  * @returns {string} ID do produto.
  */
-const getIdFromProductItem = (product) => product.querySelector('span.id').innerText;
 
 /**
  * Função responsável por criar e retornar um item do carrinho.
@@ -69,7 +65,13 @@ const getIdFromProductItem = (product) => product.querySelector('span.id').inner
  * @param {string} product.price - Preço do produto.
  * @returns {Element} Elemento de um item do carrinho.
  */
-const cart = document.querySelector('.cart__items');
+
+ const cartItemClickListener = (e) => {
+  const li = e.target;
+  li.remove();
+  saveCartItems(cart);
+};
+
 const createCartItemElement = ({ id, title, price }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
@@ -77,12 +79,6 @@ const createCartItemElement = ({ id, title, price }) => {
   li.addEventListener('click', cartItemClickListener);
   saveCartItems(cart);
   return li;
-};
-
-const cartItemClickListener = (e) => {
-const li = e.target;
-li.remove();
-saveCartItems(cart);
 };
 
 const createProducts = async () => {
@@ -96,20 +92,20 @@ const createProducts = async () => {
 
 window.addEventListener('click', async (e) => {
   if (e.target.classList.contains('item__add')) { 
-    const cartAdd = document.querySelector('.cart__items');
+    const cartAdd = cart;
     const itemIdFetch = e.target.parentNode.firstElementChild.innerHTML;
     const dados = await fetchItem(itemIdFetch);
     const id = await dados.id;
     const title = await dados.title;
     const price = await dados.price;
     cartAdd.appendChild(createCartItemElement({ id, title, price }));
-    saveCartItems(document.querySelector('.cart__items'));
+    saveCartItems(cart);
   } 
 });
 
 const loadLocal = () => {
   const liLocal = getSavedCartItems();
-  document.querySelector('.cart__items').innerHTML = liLocal;
+  cart.innerHTML = liLocal;
 };
 
 window.onload = () => {

@@ -16,14 +16,14 @@ describe('2 - Teste a função fetchItem', () => {
   test('Teste se, ao chamar a função fetchItem com o argumento do item "MLB1615760527", a função fetch utiliza o endpoint',async () => {
     expect.assertions(1);
     const correctUrl = `https://api.mercadolibre.com/items/MLB1615760527`;
-    await fetchItem('computador')
+    await fetchItem('MLB1615760527')
     expect(fetch).toHaveBeenCalledWith(correctUrl)
   });
 
   test('Teste se o retorno da função fetchItem com o argumento do item "MLB1615760527" é uma estrutura de dados igual ao objeto item que já está importado no arquivo.',async () => {
     expect.assertions(1);
     const expected = await fetchItem('MLB1615760527')
-    expect(expected).toEqual(MLB1615760527Search);
+    expect(expected).toEqual(item);
 
   });
   
