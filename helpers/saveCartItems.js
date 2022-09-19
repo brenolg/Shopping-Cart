@@ -1,5 +1,5 @@
-const saveCartItems = (param) => {
-  let cart = param.innerHTML;
+const saveCartItems = async (param) => {
+  const cart = await getInner(param)
   return localStorage.setItem('cartItems', cart);
    
   };
@@ -7,3 +7,4 @@ const saveCartItems = (param) => {
 if (typeof module !== 'undefined') {
   module.exports = saveCartItems;
 }
+
