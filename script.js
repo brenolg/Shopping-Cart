@@ -65,11 +65,11 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  * @param {string} product.price - Preço do produto.
  * @returns {Element} Elemento de um item do carrinho.
  */
-
+ const innerHTML = (elemento) => elemento.innerHTML;
  const cartItemClickListener = (e) => {
   const li = e.target;
   li.remove();
-  saveCartItems(cart);
+  saveCartItems(innerHTML(cart));
 };
 
 const createCartItemElement = ({ id, title, price }) => {
@@ -77,7 +77,7 @@ const createCartItemElement = ({ id, title, price }) => {
   li.className = 'cart__item';
   li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
   li.addEventListener('click', cartItemClickListener);
-  saveCartItems(cart);
+  saveCartItems(innerHTML(cart));
   return li;
 };
 
@@ -92,14 +92,13 @@ const createProducts = async () => {
 
 window.addEventListener('click', async (e) => {
   if (e.target.classList.contains('item__add')) { 
-    const cartAdd = cart;
     const itemIdFetch = e.target.parentNode.firstElementChild.innerHTML;
     const dados = await fetchItem(itemIdFetch);
     const id = await dados.id;
     const title = await dados.title;
     const price = await dados.price;
-    cartAdd.appendChild(createCartItemElement({ id, title, price }));
-    saveCartItems(cart);
+    cart.appendChild(createCartItemElement({ id, title, price }));
+    saveCartItems(innerHTML(cart));
   } 
 });
 
