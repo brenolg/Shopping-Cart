@@ -108,9 +108,24 @@ const loadLocal = () => {
   cart.innerHTML = liLocal;
 };
 
-window.onload = () => {
-  createProducts();
+const load = () => {
+  const elementoPai = document.querySelector('.items');
+  const loadP = document.createElement('p');
+  loadP.className = 'loading';
+  loadP.innerHTML = 'carregando...';
+  elementoPai.appendChild(loadP);
+};
+
+const removeLoad = () => {
+  const loadOnScreen = document.querySelector('.loading');
+  loadOnScreen.remove();
+};
+
+window.onload = async () => {
+  load();
+  await createProducts();
   loadLocal();
+  removeLoad();
  };
 
  const btnDeleteCart = document.querySelector('.empty-cart');
