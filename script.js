@@ -66,10 +66,11 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  * @returns {Element} Elemento de um item do carrinho.
  */
  const innerHTML = (elemento) => elemento.innerHTML;
+
  const cartItemClickListener = (e) => {
   const li = e.target;
   li.remove();
-  saveCartItems(innerHTML(cart));
+  saveCartItems(cart);
 };
 
 const createCartItemElement = ({ id, title, price }) => {
@@ -111,3 +112,12 @@ window.onload = () => {
   createProducts();
   loadLocal();
  };
+
+ const btnDeleteCart = document.querySelector('.empty-cart');
+ btnDeleteCart.addEventListener('click', () => {
+  const lis = document.querySelectorAll('.cart__item');
+  lis.forEach((element) => {
+    element.remove();
+    saveCartItems(innerHTML(cart));
+  });
+});
