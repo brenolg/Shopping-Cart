@@ -65,18 +65,7 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  * @param {string} product.price - Preço do produto.
  * @returns {Element} Elemento de um item do carrinho.
  */
- const innerHTML = (elemento) => elemento.innerHTML;
-
-
-
-const createCartItemElement = ({ id, title, price }) => {
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
-  li.addEventListener('click', cartItemClickListener);
-  saveCartItems(innerHTML(cart));
-  return li;
-};
+const innerHTML = (elemento) => elemento.innerHTML;
 
 const createProducts = async () => {
   const productsHtml = document.querySelector('.items');
@@ -86,18 +75,6 @@ const createProducts = async () => {
     productsHtml.appendChild(createProductItemElement({ id, title, thumbnail }));
   });
 };
-
-window.addEventListener('click', async (e) => {
-  if (e.target.classList.contains('item__add')) { 
-    const itemIdFetch = e.target.parentNode.firstElementChild.innerHTML;
-    const dados = await fetchItem(itemIdFetch);
-    const id = await dados.id;
-    const title = await dados.title;
-    const price = await dados.price;
-    cart.appendChild(createCartItemElement({ id, title, price }));
-    saveCartItems(innerHTML(cart));
-  } 
-});
 
 const loadLocal = () => {
   const liLocal = getSavedCartItems();
@@ -138,3 +115,24 @@ const cartItemClickListener = (e) => {
   li.remove();
   saveCartItems(innerHTML(cart));
 };
+
+const createCartItemElement = ({ id, title, price }) => {
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.innerText = `ID: ${id} | TITLE: ${title} | PRICE: $${price}`;
+  li.addEventListener('click', cartItemClickListener);
+  saveCartItems(innerHTML(cart));
+  return li;
+};
+
+window.addEventListener('click', async (e) => {
+  if (e.target.classList.contains('item__add')) { 
+    const itemIdFetch = e.target.parentNode.firstElementChild.innerHTML;
+    const dados = await fetchItem(itemIdFetch);
+    const id = await dados.id;
+    const title = await dados.title;
+    const price = await dados.price;
+    cart.appendChild(createCartItemElement({ id, title, price }));
+    saveCartItems(innerHTML(cart));
+  } 
+});
