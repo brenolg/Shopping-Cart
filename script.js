@@ -67,11 +67,7 @@ const createProductItemElement = ({ id, title, thumbnail }) => {
  */
  const innerHTML = (elemento) => elemento.innerHTML;
 
- const cartItemClickListener = (e) => {
-  const li = e.target;
-  li.remove();
-  saveCartItems(cart);
-};
+
 
 const createCartItemElement = ({ id, title, price }) => {
   const li = document.createElement('li');
@@ -136,3 +132,9 @@ window.onload = async () => {
     saveCartItems(innerHTML(cart));
   });
 });
+
+const cartItemClickListener = (e) => {
+  const li = e.target;
+  li.remove();
+  saveCartItems(innerHTML(cart));
+};
