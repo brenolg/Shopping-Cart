@@ -1,9 +1,18 @@
 # Projeto Shopping Cart
 
-Este projeto é um carrinho de compras online que permite ao usuário pesquisar e adicionar produtos de uma API externa.
+Este projeto é um carrinho de compras online que permite ao usuário pesquisar e adicionar produtos da API do Mercado Livre.
+
+<br/>
+
+<img width="100%" src="prototipo.gif" />
+
+Imagem ilustrativa disponibilizada pela Trybe
+
+
+<br/>
 
 ## Funcionalidades
-* Pesquisar produtos por termo ou categoria
+
 * Adicionar produtos ao carrinho de compras
 * Remover produtos do carrinho de compras
 * Aumentar ou diminuir a quantidade de produtos no carrinho de compras
@@ -45,3 +54,5 @@ Abra o arquivo index.html em um navegador de sua preferência.
 ## Agradecimentos
 
 Agradecemos à Trybe por nos proporcionar esta oportunidade de aprendizado e desenvolvimento de habilidades. Também agradecemos aos instrutores, colegas e mentores que nos apoiaram e orientaram durante o projeto.
+
+
