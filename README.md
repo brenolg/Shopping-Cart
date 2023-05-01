@@ -1,6 +1,6 @@
 # Projeto Shopping Cart
 
-Este projeto é um carrinho de compras online que permite ao usuário pesquisar e adicionar produtos da API do Mercado Livre.
+Este projeto é um carrinho de compras online. Que permite ao usuário adicionar e remover produtos do carrinho. Os produtos listados têm origem da API do Mercado Livre.
 
 <br/>
 
