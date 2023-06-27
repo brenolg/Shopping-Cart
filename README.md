@@ -29,7 +29,7 @@ Para instalar o projeto localmente, siga os seguintes passos:
 Clone o repositório com o comando 
 
 ```javascript
- git clone git@github.com:brenolg/Shopping-Cart.git
+ git clone git@github.com:brenolg/Shopping-Cart-HTML-JS.git
 ```
 
 Instale as dependências com o comando npm install
